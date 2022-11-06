@@ -5,6 +5,7 @@ const Page = ({ Component }) => <Component />
 
 export const App = () => {
   const [pageIndexNow, setPageIndexNow] = useState(0);
+  const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
   const [videosMinus, setVideosMinus] = useState({});
@@ -29,7 +30,8 @@ export const App = () => {
     if (newPageIndex !== pageIndexNow) {
       setIsPlus(keyCode === 39);
       setIsAnimate(true);
-      setPageIndexNow(newPageIndex)
+      setTimeout(() => setPageIndexNow(newPageIndex), 150);
+      setVideoIndexNow(newPageIndex);
     }
   }
 
@@ -85,8 +87,8 @@ export const App = () => {
       <video
         src={
           isPlus ?
-            videosPlus[pageIndexNow - 2] :
-            videosMinus[pageIndexNow + 2]
+            videosPlus[videoIndexNow - 2] :
+            videosMinus[videoIndexNow + 2]
         }
         style={{
           display: isAnimate ? "block" : "none",

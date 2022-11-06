@@ -16,14 +16,15 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
 }
 
 .leftPage {
-  background-color: orange;
+  /* background-color: orange; */
 }
 
 .rightPage {
-  background-color: skyblue;
+  /* background-color: skyblue; */
 }
 
 video {
