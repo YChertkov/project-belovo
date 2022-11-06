@@ -1,0 +1,33 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.pageView {
+  display: flex;
+  flex-direction: row;
+  width: 2160px;
+  height: 1920px;
+}
+
+.page {
+  width: 1080px;
+  height: 1920px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftPage {
+  background-color: orange;
+}
+
+.rightPage {
+  background-color: skyblue;
+}
+
+video {
+  position: absolute;
+  width: 2160px;
+  height: 1920px;
+}
