@@ -1,5 +1,5 @@
 import './index.css';
-import img from "./p-4.jpg"
+import img from "./p-3.jpg"
 
 export const Page3 = () => (
   <div className="page">
