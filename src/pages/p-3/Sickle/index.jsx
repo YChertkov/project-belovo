@@ -1,6 +1,5 @@
 import img from "./sickle.png";
-import { useDrag, DragSource, DragPreviewImage, connectDragPreview } from 'react-dnd';
-import { Preview } from 'react-dnd-preview';
+import { useDrag } from 'react-dnd';
 
 export const Sickle = () => {
     const [{ isDragging }, drag, preview] = useDrag(() => ({
@@ -10,14 +9,9 @@ export const Sickle = () => {
         }),
         item: { id: 1 }
     }));
-
-    const generatePreview2 = ({itemType, item, style}) => {
-        return <img style={style} src={img} alt="" />
-    };
     
     return (
         <>
-            <Preview generator={generatePreview2} />
             <img style={Object.assign({}, styles.sickle, { opacity: isDragging ? 0 : 1})} src={img} ref={drag} alt=""/>
         </>
     );

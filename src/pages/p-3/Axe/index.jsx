@@ -1,6 +1,5 @@
-import img from "./axe.png";
-import { useDrag, DragSource, DragPreviewImage, connectDragPreview } from 'react-dnd';
-import { Preview } from 'react-dnd-preview';
+import img1 from "./axe.png";
+import { useDrag} from 'react-dnd';
 
 export const Axe = () => {
     const [{ isDragging }, drag, preview] = useDrag(() => ({
@@ -11,14 +10,9 @@ export const Axe = () => {
         item: { id: 0 }
     }));
 
-    const generatePreview = ({itemType, item, style}) => {
-        return <img style={style} src={img} alt="" />
-    };
-    
     return (
         <>
-            <Preview generator={generatePreview} />
-            <img style={Object.assign({}, styles.style, { opacity: isDragging ? 0 : 1})} src={img} ref={drag} alt=""/>
+            <img style={Object.assign({}, styles.style, { opacity: isDragging ? 0 : 1})} src={img1} ref={drag} alt=""/>
         </>
     );
 }
