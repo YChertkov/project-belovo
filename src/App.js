@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { PAGE_COUNT, VIDEO_DURATION } from './consts';
-import { DndProvider } from 'react-dnd'
-import { TouchBackend } from 'react-dnd-touch-backend'
+import { DndProvider } from 'react-dnd';
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 const Page = ({ Component }) => <Component />
 
