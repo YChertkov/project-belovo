@@ -1,10 +1,11 @@
 import img from "./axe.png";
 import { useDrag } from 'react-dnd'
 
-export const Axe = () => {
+export const Axe = ({setShowAxe}) => {
     const [collected, drag] = useDrag(() => ({
         type: 'axe',
-        item: { id: 0 }
+        item: { id: 0 },
+        isDragging: setShowAxe(true)
     }));
     return (
         <img style={styles.style} src={img} alt="" ref={drag} {...collected}/>

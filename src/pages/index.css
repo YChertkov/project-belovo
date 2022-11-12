@@ -1,0 +1,16 @@
+.anim1 {
+    transform: translateX(100px);
+    transition-duration: 50ms;
+}
+.anim2 {
+    transform: translateX(-100px);
+    transition-duration: 50ms;
+}
+.anim3 {
+    transform: translateX(100px);
+    transition-duration: 50ms;
+}
+.anim4 {
+    transform: translateX(0);
+    transition-duration: 50ms;
+}

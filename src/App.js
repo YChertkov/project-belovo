@@ -6,7 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(0);
+  const [pageIndexNow, setPageIndexNow] = useState(3);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
