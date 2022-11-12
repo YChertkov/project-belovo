@@ -6,7 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(6);
+  const [pageIndexNow, setPageIndexNow] = useState(0);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -22,11 +22,11 @@ export const App = () => {
     let newPageIndex;
 
     if (keyCode === 37) {
-      newPageIndex = pageIndexNow - 2 >= 0 ? pageIndexNow - 2 : pageIndexNow;
+      newPageIndex = pageIndexNow - 1 >= 0 ? pageIndexNow - 1 : pageIndexNow;
     }
 
     if (keyCode === 39) {
-      newPageIndex = pageIndexNow + 2 < PAGE_COUNT ? pageIndexNow + 2 : pageIndexNow;
+      newPageIndex = pageIndexNow + 1 < PAGE_COUNT ? pageIndexNow + 1 : pageIndexNow;
     }
 
     if (newPageIndex !== pageIndexNow) {
@@ -76,22 +76,15 @@ export const App = () => {
         ref={viewerRef}
       >
         {pageComponents.length && (
-          <>
-            <div className="leftPage page">
-              <Page Component={pageComponents[pageIndexNow]} />
-            </div>
-            <div className="rightPage page">
-              {pageComponents[pageIndexNow + 1] && (
-                <Page Component={pageComponents[pageIndexNow + 1]}/>
-              )}
-            </div>
-          </>
+          <div className="page">
+            <Page Component={pageComponents[pageIndexNow]} />
+          </div>
         )}
         <video
           src={
             isPlus ?
-              videosPlus[videoIndexNow - 2] :
-              videosMinus[videoIndexNow + 2]
+              videosPlus[videoIndexNow - 1] :
+              videosMinus[videoIndexNow + 1]
           }
           style={{
             display: isAnimate ? "block" : "none",
