@@ -18,7 +18,6 @@ export const Page3 = () => {
   const [woodHandler, setWood] = useState(wood);
   const [hayHandler, setHay] = useState(hay);
   const [wheatHandler, setWheat] = useState(wheat);
-  const [error, setError] = useState(false);
   const [woodAnimation, setWoodAnimation] = useState(styles.wood);
   const [wheatAnimation, setWheatAnimation] = useState(styles.wheat);
   const [hayAnimation, setHayAnimation] = useState(styles.hay);

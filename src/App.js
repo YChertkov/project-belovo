@@ -6,7 +6,7 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(3);
+  const [pageIndexNow, setPageIndexNow] = useState(0);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -32,7 +32,7 @@ export const App = () => {
     if (newPageIndex !== pageIndexNow) {
       setIsPlus(keyCode === 39);
       setIsAnimate(true);
-      setTimeout(() => setPageIndexNow(newPageIndex), 300);
+      setTimeout(() => setPageIndexNow(newPageIndex), 350);
       setVideoIndexNow(newPageIndex);
     }
   }
@@ -45,13 +45,13 @@ export const App = () => {
     setPagesComponents(pageComponents);
 
     const videosPlus = {};
-    for (let i = 0; i <= PAGE_COUNT / 2; i += 2) {
+    for (let i = 0; i <= PAGE_COUNT; i += 1) {
       videosPlus[i] = require(`./videos/plus/${i}.mp4`);
     }
     setVideosPlus(videosPlus);
 
     const videosMinus = {};
-    for (let i = 2; i <= PAGE_COUNT - 2; i += 2) {
+    for (let i = 1; i <= PAGE_COUNT - 1; i += 1) {
       videosMinus[i] = require(`./videos/minus/${i}.mp4`);
     }
     setVideosMinus(videosMinus);
