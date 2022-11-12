@@ -1,14 +1,13 @@
-import img from "./axe.png";
 import { useDrag, DragSource, DragPreviewImage, connectDragPreview } from 'react-dnd';
 import { Preview } from 'react-dnd-preview';
 
-export const Axe = () => {
+export const Axe = ({id, img, type}) => {
     const [{ isDragging }, drag, preview] = useDrag(() => ({
-        type: 'axe',
+        type: type,
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
         }),
-        item: { id: 0 }
+        item: id
     }));
 
     const generatePreview = ({itemType, item, style}) => {

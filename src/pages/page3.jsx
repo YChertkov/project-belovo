@@ -3,12 +3,31 @@ import { useState } from 'react';
 import { Axe } from './p-3/Axe';
 import { Fork } from './p-3/Fork';
 import { Sickle } from './p-3/Sickle';
+import { Instruments } from './p-3/Instruments';
 import './index.css';
 import img from "./p-3.jpg";
 import hay from "./p-3/hay.png";
 import wood from "./p-3/wood.png";
 import wheat from "./p-3/wheat.png";
 import wheatDone from "./p-3/wheatDone.png";
+
+// const obj = {
+//   {
+//     "id": 0,
+//     "img": "./p-3/Axe/axe.png",
+//     "type": "axe"
+//   },
+//   {
+//     "id": 1,
+//     "img": "./p-3/Sickle/sickle.png",
+//     "type": "sickle"
+//   },
+//   {
+//     "id": 2,
+//     "img": "./p-3/Fork/fork.png",
+//     "type": "fork"
+//   }
+// }
 
 export const Page3 = () => {
   const [woodHandler, setWood] = useState(wood);
@@ -47,7 +66,7 @@ export const Page3 = () => {
       <img style={styles.hay} src={hayHandler} ref={hayRef} alt=""/>
       <img className="wood" style={styles.wood} src={woodHandler} ref={woodRef} alt=""/>
       <img className="wheat" style={styles.wheat} src={wheatHandler} ref={wheatRef} alt=""/>
-      {showAxe === wheatDone ? null : <Axe setShowAxe={setShowAxe} />}
+      {woodHandler === wheatDone ? null : <Axe setShowAxe={setShowAxe} />}
       {hayHandler === wheatDone ? null : <Fork />}
       {wheatHandler === wheatDone ? null : <Sickle />}
       <img src={img} style={{width: "2160px", height: "1920px"}} />  

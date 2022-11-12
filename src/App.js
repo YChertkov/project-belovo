@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { PAGE_COUNT, VIDEO_DURATION } from './consts';
 import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend'
 
 const Page = ({ Component }) => <Component />
 
@@ -68,7 +68,7 @@ export const App = () => {
   }, [viewerRef]);
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={TouchBackend}>
       <div
         className="pageView"
         tabIndex="0"
