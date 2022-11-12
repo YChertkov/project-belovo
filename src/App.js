@@ -30,7 +30,7 @@ export const App = () => {
     if (newPageIndex !== pageIndexNow) {
       setIsPlus(keyCode === 39);
       setIsAnimate(true);
-      setTimeout(() => setPageIndexNow(newPageIndex), 150);
+      setTimeout(() => setPageIndexNow(newPageIndex), 300);
       setVideoIndexNow(newPageIndex);
     }
   }
