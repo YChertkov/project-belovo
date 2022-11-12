@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import { PAGE_COUNT, VIDEO_DURATION } from './consts';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(0);
+  const [pageIndexNow, setPageIndexNow] = useState(6);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -66,35 +68,37 @@ export const App = () => {
   }, [viewerRef]);
 
   return (
-    <div
-      className="pageView"
-      tabIndex="0"
-      onKeyDown={handlePress}
-      ref={viewerRef}
-    >
-      {pageComponents.length && (
-        <>
-          <div className="leftPage page">
-            <Page Component={pageComponents[pageIndexNow]} />
-          </div>
-          <div className="rightPage page">
-            {pageComponents[pageIndexNow + 1] && (
-              <Page Component={pageComponents[pageIndexNow + 1]}/>
-            )}
-          </div>
-        </>
-      )}
-      <video
-        src={
-          isPlus ?
-            videosPlus[videoIndexNow - 2] :
-            videosMinus[videoIndexNow + 2]
-        }
-        style={{
-          display: isAnimate ? "block" : "none",
-        }}
-        autoPlay
-      />
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div
+        className="pageView"
+        tabIndex="0"
+        onKeyDown={handlePress}
+        ref={viewerRef}
+      >
+        {pageComponents.length && (
+          <>
+            <div className="leftPage page">
+              <Page Component={pageComponents[pageIndexNow]} />
+            </div>
+            <div className="rightPage page">
+              {pageComponents[pageIndexNow + 1] && (
+                <Page Component={pageComponents[pageIndexNow + 1]}/>
+              )}
+            </div>
+          </>
+        )}
+        <video
+          src={
+            isPlus ?
+              videosPlus[videoIndexNow - 2] :
+              videosMinus[videoIndexNow + 2]
+          }
+          style={{
+            display: isAnimate ? "block" : "none",
+          }}
+          autoPlay
+        />
+      </div>
+    </DndProvider>
   );
 }
