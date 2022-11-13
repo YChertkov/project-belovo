@@ -1,0 +1,8 @@
+import './index.css';
+import img from "./p-12.jpg";
+
+export const Page12 = () => (
+  <div className="page">
+    <img src={img} style={{width: "2160px", height: "1920px"}} /> 
+  </div>
+);

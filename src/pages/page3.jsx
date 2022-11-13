@@ -7,7 +7,9 @@ import { usePreview } from 'react-dnd-preview';
 import './index.css';
 import img from "./p-3.jpg";
 import hay from "./p-3/hay.png";
+import hayDone from "./p-3/hayDone.png";
 import wood from "./p-3/wood.png";
+import woodDone from "./p-3/woodDone.png";
 import wheat from "./p-3/wheat.png";
 import wheatDone from "./p-3/wheatDone.png";
 import axe from "./p-3/Axe/axe.png";
@@ -26,7 +28,7 @@ export const Page3 = () => {
     accept: ['axe', 'fork', 'sickle'],
     drop(item) {
       if (item.id === 0) {
-        setWood(wheatDone);
+        setWood(woodDone);
       } else {
         setWoodAnimation(styles.wood2);
         setTimeout(function() { setWoodAnimation(styles.wood3) }.bind(this), 69);
@@ -39,7 +41,7 @@ export const Page3 = () => {
     accept: ['axe', 'fork', 'sickle'],
     drop(item) {
       if (item.id === 2) {
-        setHay(wheatDone);
+        setHay(hayDone);
       } else {
         setHayAnimation(styles.hay2);
         setTimeout(function() { setHayAnimation(styles.hay3) }.bind(this), 69);
@@ -85,8 +87,8 @@ export const Page3 = () => {
       <img className="wheat" style={wheatAnimation} src={wheatHandler} ref={wheatRef} alt=""/>
       <div>
         <MyPreview />
-        {woodHandler === wheatDone ? null : <Axe />}
-        {hayHandler === wheatDone ? null : <Fork />}
+        {woodHandler === woodDone ? null : <Axe />}
+        {hayHandler === hayDone ? null : <Fork />}
         {wheatHandler === wheatDone ? null : <Sickle />}
       </div>
       <img src={img} style={{width: "2160px", height: "1920px"}} />  
@@ -97,57 +99,57 @@ export const Page3 = () => {
 const styles = {
   hay: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 695
   },
   hay2: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 695,
     transform: "translateX(20px)",
     transitionDuration: "70ms"
   },
   hay3: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 695,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
   },
   wood: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 357
   },
   wood2: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 357,
     transform: "translateX(20px)",
     transitionDuration: "70ms"
   },
   wood3: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 357,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
   },
   wheat: {
     position: "absolute",
-    top: 542,
-    right: 18
+    bottom: 1170,
+    left: 1774
   },
   wheat2: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 18,
     transform: "translateX(20px)",
     transitionDuration: "70ms"
   },
   wheat3: {
     position: "absolute",
-    top: 542,
+    bottom: 1170,
     right: 18,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
