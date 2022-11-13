@@ -6,7 +6,7 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(8);
+  const [pageIndexNow, setPageIndexNow] = useState(11);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
