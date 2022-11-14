@@ -1,9 +1,8 @@
 import { useDrop } from 'react-dnd';
 import { useState } from 'react';
-import './index.css';
-import img from "./p-11.jpg";
-import train from "./p-3/Axe/axe.png";
-import obj from "./p-3/hay.png";
+import img from "./bg.jpg";
+import train from "../Page3/Axe/axe.png";
+import obj from "../Page3/hay/hay.png";
 import { useDrag} from 'react-dnd';
 import { usePreview } from 'react-dnd-preview';
 
@@ -49,7 +48,7 @@ export const Page11 = () => {
     <img style={styles.obj} src={obj} alt="" ref={objRef}/>
     <MyPreview test={test} />
     <Train setTest={setTest} />
-    <img src={img} style={{width: "2160px", height: "1920px"}} /> 
+    <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
   </div>
 )};
 

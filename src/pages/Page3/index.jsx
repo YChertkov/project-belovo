@@ -1,20 +1,19 @@
 import { useDrop } from 'react-dnd';
 import { useState } from 'react';
-import { Axe } from './p-3/Axe';
-import { Fork } from './p-3/Fork';
-import { Sickle } from './p-3/Sickle';
+import { Axe } from './Axe';
+import { Fork } from './Fork';
+import { Sickle } from './Sickle';
 import { usePreview } from 'react-dnd-preview';
-import './index.css';
-import img from "./p-3.jpg";
-import hay from "./p-3/hay.png";
-import hayDone from "./p-3/hayDone.png";
-import wood from "./p-3/wood.png";
-import woodDone from "./p-3/woodDone.png";
-import wheat from "./p-3/wheat.png";
-import wheatDone from "./p-3/wheatDone.png";
-import axe from "./p-3/Axe/axe.png";
-import fork from "./p-3/Fork/fork.png";
-import sickle from "./p-3/Sickle/sickle.png";
+import img from "./bg.jpg";
+import hay from "./hay/hay.png";
+import hayDone from "./hay/hayDone.png";
+import wood from "./wood/wood.png";
+import woodDone from "./wood/woodDone.png";
+import wheat from "./wheat/wheat.png";
+import wheatDone from "./wheat/wheatDone.png";
+import axe from "./Axe/axe.png";
+import fork from "./Fork/fork.png";
+import sickle from "./Sickle/sickle.png";
 
 export const Page3 = () => {
   const [woodHandler, setWood] = useState(wood);
@@ -91,7 +90,7 @@ export const Page3 = () => {
         {hayHandler === hayDone ? null : <Fork />}
         {wheatHandler === wheatDone ? null : <Sickle />}
       </div>
-      <img src={img} style={{width: "2160px", height: "1920px"}} />  
+      <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/>  
     </div>
   );
 }

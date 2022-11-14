@@ -1,11 +1,10 @@
-import './index.css';
-import img from "./p-16.jpg";
-import bream from "./p-16/bream.png";
-import carp from "./p-16/carp.png";
-import perch from "./p-16/perch.png";
-import pike from "./p-16/pike.png";
-import error from "./error.png";
-import right from "./right.png";
+import img from "./bg.jpg";
+import bream from "./fish/bream.png";
+import carp from "./fish/carp.png";
+import perch from "./fish/perch.png";
+import pike from "./fish/pike.png";
+import error from "../error.png";
+import right from "../right.png";
 import { useState } from 'react';
 
 export const Page16 = () => {
@@ -43,7 +42,7 @@ export const Page16 = () => {
                 <span style={styles.text}>Щука</span>
             </div>
       </div>
-      <img src={img} style={{width: "2160px", height: "1920px"}} /> 
+      <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>
   )
 };

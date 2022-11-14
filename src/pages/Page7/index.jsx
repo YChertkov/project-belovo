@@ -1,11 +1,10 @@
-import './index.css';
-import img from "./p-7.jpg";
-import coal from "./p-7/coal.png";
-import iron from "./p-7/iron.png";
-import lime from "./p-7/limestone.png";
-import zinc from "./p-7/zinc.png";
-import error from "./error.png";
-import right from "./right.png";
+import img from "./bg.jpg";
+import coal from "./resourses/coal.png";
+import iron from "./resourses/iron.png";
+import lime from "./resourses/limestone.png";
+import zinc from "./resourses/zinc.png";
+import error from "../error.png";
+import right from "../right.png";
 import { useState } from 'react';
 
 export function Page7() {
@@ -43,7 +42,7 @@ export function Page7() {
                 <span style={styles.text}>Известняк</span>
             </div>
         </div>
-        <img src={img} style={{width: "2160px", height: "1920px"}} />  
+        <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/>  
     </div>
   )
 };

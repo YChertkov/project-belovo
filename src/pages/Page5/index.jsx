@@ -1,11 +1,10 @@
-import './index.css';
-import img from "./p-5.jpg";
-import pick from "./p-5/pick.png";
-import hoe from "./p-5/hoe.png";
-import pick2 from "./p-5/pick2.png";
-import torch from "./p-5/torch.png";
-import error from "./error.png";
-import right from "./right.png";
+import img from "./bg.jpg";
+import pick from "./instruments/pick.png";
+import hoe from "./instruments/hoe.png";
+import pick2 from "./instruments/pick2.png";
+import torch from "./instruments/torch.png";
+import error from "../error.png";
+import right from "../right.png";
 import { useState } from 'react';
 
 export function Page5() {
@@ -43,7 +42,7 @@ export function Page5() {
           <img src={error} alt="" />
          </div>
       </div>
-      <img src={img} style={{width: "2160px", height: "1920px"}} />  
+      <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/>  
     </div>
   )
 };

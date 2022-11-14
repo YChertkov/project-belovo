@@ -6,7 +6,7 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(11);
+  const [pageIndexNow, setPageIndexNow] = useState(16);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -40,7 +40,7 @@ export const App = () => {
   useEffect(() => {
     const pageComponents = [];
     for (let i = 0; i < PAGE_COUNT; i++) {
-      pageComponents.push((require('./pages/page' + i))[`Page${i}`]);
+      pageComponents.push((require('./pages/Page' + i))[`Page${i}`]);
     }
     setPagesComponents(pageComponents);
 
