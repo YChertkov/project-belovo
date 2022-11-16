@@ -1,46 +1,87 @@
-import img from "./bg.jpg";
-import bream from "./fish/bream.png";
-import carp from "./fish/carp.png";
-import perch from "./fish/perch.png";
-import pike from "./fish/pike.png";
-import error from "../../media/error.png";
-import right from "../../media/right.png";
 import { useState } from 'react';
+import img from "./bg.jpg";
+import carp from "./fishs/carp.png";
+import catfish from "./fishs/catfish.png";
+import silver from "./fishs/silver.png";
+import sturgeon from "./fishs/sturgeon.png";
+import birch from "./trees/birch.png";
+import linden from "./trees/linden.png";
+import marple from "./trees/maple.png";
+import rowan from "./trees/rowan.png";
+import error from "./../../media/error.png";
+import right from "./../../media/right.png";
 
 export const Page16 = () => {
-  const [breamHandler, setBreamHandl] = useState(styles.hide);
-  const [carpHandler, setCarpHandl] = useState(styles.hide);
-  const [perchHandler, setPerchHandl] = useState(styles.hide);
-  const [pikeHandler, setPikeHandl] = useState(styles.hide);
+  const [slide, setSlide] = useState(false);
+  const [hide, setHide] = useState(styles.opacityUp);
+  const [firstHandler, setFirstHandler] = useState(styles.opacityDown);
+  const [secondHandler, setSecondHandler] = useState(styles.opacityDown);
+  const [thirdHandler, setThirdHandler] = useState(styles.opacityDown);
+  const [fourthHandler, setFourthHandler] = useState(styles.opacityDown);
+  const handleClick = (a) => {
+    if (a === 1) {
+      setFirstHandler(styles.opacityUp);
+    }
+    if (a === 2) {
+      setSecondHandler(styles.opacityUp);
+    }
+    if (a === 3) {
+      setThirdHandler(styles.opacityUp);
+    }
+    if (a === 4) {
+      setFourthHandler(styles.opacityUp);
+    }
+    if (a === 3 && !slide) {
+      setTimeout(() => {setHide(styles.opacityDown);}, 1500);
+      setTimeout(() => {setFirstHandler(styles.opacityDown);}, 2000);
+      setTimeout(() => {setSecondHandler(styles.opacityDown);}, 2000);
+      setTimeout(() => {setThirdHandler(styles.opacityDown);}, 2000);
+      setTimeout(() => {setFourthHandler(styles.opacityDown);}, 2000);
+      setTimeout(() => {setSlide(true);}, 2050);
+      setTimeout(() => {setHide(styles.opacityUp);}, 2100);
+    }
+  };
+
   return (
     <div className="page">
-      <div onClick={() => setBreamHandl(styles.show)} style={styles.bream}>
-        <img width={386} style={styles.breamImage} src={bream} alt=""/>
-        <div style={breamHandler}>
-            <img src={error} alt="" />
-            <span style={styles.breamText}>Лещ</span>
+      <div style={{...styles.headerWrapper, ...hide}}>
+        <span style={styles.header}>{slide ? "Определи из предложенных деревьев липу" : "Определи из предложенных рыб карпа"}</span>
+      </div>
+      <div onClick={() => handleClick(1)} style={{...styles.select, ...styles.first, ...hide}}>
+        <div style={styles.imageWrapper}>
+          <img src={slide ? marple : silver} alt="" />
+        </div>
+        <div style={{...styles.answer, ...firstHandler}}>
+          <img src={error} alt="" />
+          <span style={styles.answerText}>{slide ? "Клён" : "Толстолобик"}</span>
         </div>
       </div>
-      <div onClick={() => setCarpHandl(styles.show)} style={styles.carp}>
-            <img width={386} style={styles.image} src={carp} alt=""/>
-            <div style={carpHandler}>
-                <img src={right} alt="" />
-                <span style={styles.text}>Карп</span>
-            </div>
+      <div onClick={() => handleClick(2)} style={{...styles.select, ...styles.second, ...hide}}>
+        <div style={styles.imageWrapper}>
+          <img style={styles.image} src={slide ? linden : sturgeon} alt="" />
+        </div>
+        <div style={{...styles.answer, ...secondHandler}}>
+          <img src={slide ? right : error} alt="" />
+          <span style={styles.answerText}>{slide ? "Липа" : "Осётр"}</span>
+        </div>
       </div>
-      <div onClick={() => setPerchHandl(styles.show)} style={styles.perch}>
-            <img width={386} style={styles.image} src={perch} alt=""/>
-            <div style={perchHandler}>
-                <img src={error} alt="" />
-                <span style={styles.text}>Окунь</span>
-            </div>
+      <div onClick={() => handleClick(3)} style={{...styles.select, ...styles.third, ...hide}}>
+        <div style={styles.imageWrapper}>
+          <img src={slide ? birch : carp} alt="" />
+        </div>
+        <div style={{...styles.answer, ...thirdHandler}}>
+          <img src={slide ? error : right} alt="" />
+          <span style={styles.answerText}>{slide ? "Берёза" : "Карп"}</span>
+        </div>
       </div>
-      <div onClick={() => setPikeHandl(styles.show)} style={styles.pike}>
-            <img width={386} style={styles.image} src={pike} alt=""/>
-            <div style={pikeHandler}>
-                <img src={error} alt="" />
-                <span style={styles.text}>Щука</span>
-            </div>
+      <div onClick={() => handleClick(4)} style={{...styles.select, ...styles.fourth, ...hide}}>
+        <div style={styles.imageWrapper}>
+          <img src={slide ? rowan : catfish} alt="" />
+        </div>
+        <div style={{...styles.answer, ...fourthHandler}}>
+          <img src={error} alt="" />
+          <span style={styles.answerText}>{slide ? "Рябина" : "Сом"}</span>
+        </div>
       </div>
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>
@@ -48,64 +89,72 @@ export const Page16 = () => {
 };
 
 const styles = {
-  hide: {
-      display: "flex",
-      alignItems: "center",
-      opacity: 0
+  headerWrapper: {
+    position: "absolute",
+    left: 90,
+    top: 1002,
+    width: 947,
+    height: 156,
+    display: "flex",
+    justifyContent: "center"
   },
-  show: {
-      display: "flex",
-      alignItems: "center",
-      opacity: 1,
-      transition: "opacity 0.2s",
-      justifyContent: "center"
+  header: {
+      fontFamily: "Praho Pro",
+      fontWeight: 500,
+      fontSize: 48,
+      lineHeight: "78px",
+      textAlign: "center",
+      width: "90%"
   },
-  bream: {
-      position: "absolute",
-      bottom: 92,
-      left: 573,
-      display: "flex",
-      flexDirection: "column"
+  select: {
+    position: "absolute",
+    width: 453,
+    height: 275,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-end"
   },
-  carp: {
-      position: "absolute",
-      bottom: 101,
-      left: 98,
-      display: "flex",
-      flexDirection: "column"
+  first: {
+    bottom: 450,
+    left: 68
   },
-  perch: {
-      position: "absolute",
-      bottom: 419,
-      left: 596,
-      display: "flex",
-      flexDirection: "column"
+  second: {
+    bottom: 450,
+    left: 547
   },
-  pike: {
-      position: "absolute",
-      bottom: 420,
-      left: 98,
-      display: "flex",
-      flexDirection: "column"
+  third: {
+    bottom: 101,
+    left: 65
   },
-  text: {
-      fontSize: 42,
-      lineHeight: "42px",
-      marginTop: 15,
-      marginLeft: 11
+  fourth: {
+    bottom: 92,
+    left: 535
   },
-  image: {
-      margin: "auto"
+  imageWrapper: {
+    height: 217,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
-  breamImage: {
-    margin: "auto",
-    marginBottom: 35
+  answer: {
+    display: "flex",
+    marginTop: 10,
+    alignItems: "center"
   },
-  breamText: {
-    fontSize: 42,
-    lineHeight: "42px",
-    marginTop: 15,
-    marginLeft: 11,
-    marginBottom: 10
+  answerText: {
+    fontSize: 32,
+    lineHeight: "51px",
+    fontFamily: "Praho Pro",
+    marginTop: 10,
+    marginLeft: 9
+  },
+  opacityDown: {
+    opacity: 0,
+    transition: "opacity 0.5s"
+  },
+  opacityUp: {
+    opacity: 1,
+    transition: "opacity 0.5s"
   }
 }
