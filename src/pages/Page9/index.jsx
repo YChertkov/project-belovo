@@ -27,6 +27,7 @@ export const Page9 = () => {
     }
     if (a === 2) {
       setSecondHandler(true);
+      console.log(1);
     }
     if (a === 3) {
       setThirdHandler(true);
@@ -34,14 +35,14 @@ export const Page9 = () => {
     if (a === 4) {
       setFourthHandler(true);
     }
-    if (a === accept[page]) {
-      setOpacityHigh(styles.opacityDown);
-      setTimeout(() => {setPage(page + 1);}, 300);
-      setTimeout(() => {setOpacityHigh(styles.opacityUp);}, 310);
-      setFirstHandler(false);
-      setSecondHandler(false);
-      setThirdHandler(false);
-      setFourthHandler(false);
+    if (a === accept[page] && page <= 2) {
+      setTimeout(() => {setOpacityHigh(styles.opacityDown);}, 600);
+      setTimeout(() => {setPage(page + 1);}, 900);
+      setTimeout(() => {setFirstHandler(false);}, 900);
+      setTimeout(() => {setSecondHandler(false);}, 900);
+      setTimeout(() => {setThirdHandler(false);}, 900);
+      setTimeout(() => {setFourthHandler(false);}, 900);
+      setTimeout(() => {setOpacityHigh(styles.opacityUp);}, 910);
     }
   };
   return (
@@ -50,19 +51,19 @@ export const Page9 = () => {
         <div style={styles.imageWrapper}>
           <img src={images[page]} style={{...styles.image, ...opacityHigh}} alt=""/>
         </div>
-        <div onClick={() => handleClick(1)} style={{...styles.bg, ...styles.bg1}}>
+        <div onClick={() => handleClick(1)} style={{...styles.bg, ...styles.bg1, ...opacityHigh}}>
           <span style={{...styles.text, ...opacityHigh}}>{firstWord[page]}</span>
         </div>
         {firstHandler ? <img src={accept[page] === 1 ? right : error} style={{...styles.imageFirst, ...opacityHigh}} alt=""/> : null}
-        <div onClick={() => handleClick(2)} style={{...styles.bg, ...styles.bg2}}>
+        <div onClick={() => handleClick(2)} style={{...styles.bg, ...styles.bg2, ...opacityHigh}}>
           <span style={{...styles.text, ...opacityHigh}}>{secondWord[page]}</span>
         </div>
         {secondHandler ? <img src={accept[page] === 2 ? right : error} style={{...styles.imageSecond, ...opacityHigh}} alt=""/> : null}
-        <div onClick={() => handleClick(3)} style={{...styles.bg, ...styles.bg3}}>
+        <div onClick={() => handleClick(3)} style={{...styles.bg, ...styles.bg3, ...opacityHigh}}>
           <span style={{...styles.text, ...opacityHigh}}>{thirdWord[page]}</span>
         </div>
         {thirdHandler ? <img src={accept[page] === 3 ? right : error} style={{...styles.imageThird, ...opacityHigh}} alt=""/> : null}
-        <div onClick={() => handleClick(4)} style={{...styles.bg, ...styles.bg4}}>
+        <div onClick={() => handleClick(4)} style={{...styles.bg, ...styles.bg4, ...opacityHigh}}>
           <span style={{...styles.text, ...opacityHigh}}>{fourthWord[page]}</span>
         </div>
         {fourthHandler ? <img src={accept[page] === 4 ? right : error} style={{...styles.imageFourth, ...opacityHigh}} alt=""/> : null}
@@ -119,11 +120,11 @@ const styles = {
   },
   opacityDown: {
     opacity: 0,
-    transition: "opacity 0.3s"
+    transition: "opacity 0.5s"
   },
   opacityUp: {
     opacity: 1,
-    transition: "opacity 0.3s"
+    transition: "opacity 0.5s"
   },
   bg: {
     width: 378,
