@@ -3,8 +3,8 @@ import coal from "./resourses/coal.png";
 import iron from "./resourses/iron.png";
 import lime from "./resourses/limestone.png";
 import zinc from "./resourses/zinc.png";
-import error from "../error.png";
-import right from "../right.png";
+import error from "../../media/error.png";
+import right from "../../media/right.png";
 import { useState } from 'react';
 
 export function Page7() {
@@ -92,7 +92,8 @@ const styles = {
         fontSize: 42,
         lineHeight: "42px",
         marginTop: 15,
-        marginLeft: 11
+        marginLeft: 11,
+        fontFamily: 'Praho Pro'
     },
     image: {
         margin: "auto"

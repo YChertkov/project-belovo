@@ -3,8 +3,8 @@ import bream from "./fish/bream.png";
 import carp from "./fish/carp.png";
 import perch from "./fish/perch.png";
 import pike from "./fish/pike.png";
-import error from "../error.png";
-import right from "../right.png";
+import error from "../../media/error.png";
+import right from "../../media/right.png";
 import { useState } from 'react';
 
 export const Page16 = () => {

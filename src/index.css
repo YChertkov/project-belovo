@@ -1,6 +1,12 @@
 @font-face {
-	src: url('../public/vezitsacyrillic.ttf') format('truetype');
+	src: url('./fonts/vezitsacyrillic.ttf') format('truetype');
 	font-family: 'Vezitsa';
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	src: url('./fonts/PrahoPro-Regular.ttf') format('truetype');
+	font-family: 'Praho Pro';
 	font-weight: 400;
 	font-style: normal;
 }

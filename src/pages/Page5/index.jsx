@@ -3,8 +3,8 @@ import pick from "./instruments/pick.png";
 import hoe from "./instruments/hoe.png";
 import pick2 from "./instruments/pick2.png";
 import torch from "./instruments/torch.png";
-import error from "../error.png";
-import right from "../right.png";
+import error from "../../media/error.png";
+import right from "../../media/right.png";
 import { useState } from 'react';
 
 export function Page5() {
