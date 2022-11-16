@@ -1,3 +1,4 @@
+import { useState } from "react";
 import img from "./bg.jpg";
 import error from "./media/error.png";
 import right from "./media/right.png";
@@ -6,25 +7,38 @@ import second from "./media/second.png";
 import third from "./media/third.png";
 import fourth from "./media/fourth.png";
 
-export const Page9 = () => (
-  <div style={styles.content}>
-    <div>
-      <div style={styles.imageWrapper}>
-        <img src={first} style={styles.image} alt=""/>
+export const Page9 = () => {
+  const [page, setPage] = useState(0);
+  const [firstHandler, setFirstHandler] = useState(false);
+  const [secondHandler, setSecondHandler] = useState(false);
+  const [thirdHandler, setThirdHandler] = useState(false);
+  const [fourthHandler, setFourthHandler] = useState(false);
+  const images = [first, second, third, fourth];
+  const firstWord = ["взлёт","хвост","крыло","диспетчер"];
+  const secondWord = ["пилот","люк","высота","аэродром"];
+  const thirdWord = ["скорость","фюзеляж","топливо","небо"];
+  const fourthWord = ["полоса","аэродром","шасси","самолёт"];
+  const accept = [2, 3, 1, 4];
+  return (
+    <div style={styles.content}>
+      <div>
+        <div style={styles.imageWrapper}>
+          <img src={images[page]} style={styles.image} alt=""/>
+        </div>
+        <span style={styles.textFirst}>{firstWord[page]}</span>
+        {firstHandler ? <img src={accept[page] === 1 ? right : error} style={styles.imageFirst} alt=""/> : null}
+        <span style={styles.textSecond}>{secondWord[page]}</span>
+        {secondHandler ? <img src={accept[page] === 2 ? right : error} style={styles.imageSecond} alt=""/> : null}
+        <span style={styles.textThird}>{thirdWord[page]}</span>
+        {thirdHandler ? <img src={accept[page] === 3 ? right : error} style={styles.imageThird} alt=""/> : null}
+        <span style={styles.textFourth}>{fourthWord[page]}</span>
+        {fourthHandler ? <img src={accept[page] === 4 ? right : error} style={styles.imageFourth} alt=""/> : null}
+        <span style={styles.number}>{page+1} из 4</span>
       </div>
-      <span style={styles.textFirst}>взлёт</span>
-      <img src={error} style={styles.imageFirst} alt=""/>
-      <span style={styles.textSecond}>пилот</span>
-      <img src={right} style={styles.imageSecond} alt=""/>
-      <span style={styles.textThird}>скорость</span>
-      <img src={error} style={styles.imageThird} alt=""/>
-      <span style={styles.textFourth}>полоса</span>
-      <img src={error} style={styles.imageFourth} alt=""/>
-      <span style={styles.number}>1 из 4</span>
+      <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>
-    <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
-  </div>
-);
+  )
+};
 
 const styles = {
   content: {
