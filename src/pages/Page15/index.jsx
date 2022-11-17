@@ -47,10 +47,12 @@ export const Third = () => {
   }));
   return (
       <>
-        <img style={Object.assign({}, styles.third, { opacity: isDragging ? 0 : 1})} src={third} ref={thirdRef} alt=""/>
+        <img className='lol' style={Object.assign({}, styles.third, { opacity: isDragging ? 0 : 1})} src={third} ref={thirdRef} alt=""/>
       </>
   );
 }
+
+let position;
 
 const MyPreview = () => {
   const {display, itemType, item, style} = usePreview()
@@ -64,15 +66,21 @@ const MyPreview = () => {
     return  <img src={second} style={style} alt="" />
   }
   if (item.id === 3) {
-    return  <img src={third} style={style} alt="" />
+    return  <img className='kek' src={third} style={style} alt="" />
   }
+  console.log(position);
+  position = style;
 }
 
 export const Page15 = () => {
   const [woodCollected, sceneRef] = useDrop(() => ({
     accept: ['first', 'second', 'third'],
     drop(item) {
-      console.log(item)
+      if (item.id === 3) {
+        const finder = document.getElementsByClassName("kek");
+        const object = document.getElementsByClassName("lol");
+        object[0].style = position;
+      }
     }
   }));
   return (
