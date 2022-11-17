@@ -51,19 +51,19 @@ export const Page9 = () => {
         <div style={styles.imageWrapper}>
           <img src={images[page]} style={{...styles.image, ...opacityHigh}} alt=""/>
         </div>
-        <div onClick={() => handleClick(1)} style={{...styles.bg, ...styles.bg1, ...opacityHigh}}>
+        <div onClick={() => handleClick(1)} style={{...styles.bg, ...styles.bg1}}>
           <span style={{...styles.text, ...opacityHigh}}>{firstWord[page]}</span>
         </div>
         {firstHandler ? <img src={accept[page] === 1 ? right : error} style={{...styles.imageFirst, ...opacityHigh}} alt=""/> : null}
-        <div onClick={() => handleClick(2)} style={{...styles.bg, ...styles.bg2, ...opacityHigh}}>
+        <div onClick={() => handleClick(2)} style={{...styles.bg, ...styles.bg2}}>
           <span style={{...styles.text, ...opacityHigh}}>{secondWord[page]}</span>
         </div>
         {secondHandler ? <img src={accept[page] === 2 ? right : error} style={{...styles.imageSecond, ...opacityHigh}} alt=""/> : null}
-        <div onClick={() => handleClick(3)} style={{...styles.bg, ...styles.bg3, ...opacityHigh}}>
+        <div onClick={() => handleClick(3)} style={{...styles.bg, ...styles.bg3}}>
           <span style={{...styles.text, ...opacityHigh}}>{thirdWord[page]}</span>
         </div>
         {thirdHandler ? <img src={accept[page] === 3 ? right : error} style={{...styles.imageThird, ...opacityHigh}} alt=""/> : null}
-        <div onClick={() => handleClick(4)} style={{...styles.bg, ...styles.bg4, ...opacityHigh}}>
+        <div onClick={() => handleClick(4)} style={{...styles.bg, ...styles.bg4}}>
           <span style={{...styles.text, ...opacityHigh}}>{fourthWord[page]}</span>
         </div>
         {fourthHandler ? <img src={accept[page] === 4 ? right : error} style={{...styles.imageFourth, ...opacityHigh}} alt=""/> : null}

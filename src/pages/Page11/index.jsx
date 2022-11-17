@@ -1,7 +1,8 @@
 import { useDrop } from 'react-dnd';
 import { useState } from 'react';
 import img from "./bg.jpg";
-import train from "../Page3/Axe/axe.png";
+import road from "./media/road.png";
+import train from "./media/train.png";
 import obj from "../Page3/hay/hay.png";
 import { useDrag} from 'react-dnd';
 import { usePreview } from 'react-dnd-preview';
@@ -45,9 +46,10 @@ export const Page11 = () => {
   }));
   return (
   <div className="page">
-    <img style={styles.obj} src={obj} alt="" ref={objRef}/>
+    {/* <img style={styles.obj} src={obj} alt="" ref={objRef}/> */}
     <MyPreview test={test} />
     <Train setTest={setTest} />
+    <img style={styles.road} src={road} alt="" />
     <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
   </div>
 )};
@@ -57,8 +59,9 @@ export const Page11 = () => {
 const styles = {
   train: {
       position: "absolute",
-      bottom: 100,
-      right: 850
+      bottom: -200,
+      right: 725,
+      zIndex: 1
   },
   obj: {
     position: "absolute",
@@ -66,6 +69,12 @@ const styles = {
     height: 500,
     top: 500,
     right: 500,
+    zIndex: 0
+  },
+  road: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
     zIndex: 0
   }
 }
