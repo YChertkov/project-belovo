@@ -1,13 +1,13 @@
-import { useDrag} from 'react-dnd';
+import { useDrag } from 'react-dnd';
 import { usePreview } from 'react-dnd-preview';
 import { useDrop } from 'react-dnd';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import img from "./bg.jpg";
 import scene from "./scene.png";
 import first from "./first.png";
 import second from "./second.png";
 import third from "./third.png";
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 export const First = ({translate}) => {
   const [{ isDragging }, firstRef, preview] = useDrag(() => ({
@@ -28,7 +28,7 @@ export const First = ({translate}) => {
   );
 }
 
-export const Second = () => {
+export const Second = ({translate}) => {
   const [{ isDragging }, secondRef, preview] = useDrag(() => ({
       type: 'second',
       collect: (monitor) => ({
@@ -37,13 +37,17 @@ export const Second = () => {
       item: { id: 2 }
   }));
   return (
-      <>
-        <img style={Object.assign({}, styles.second, { opacity: isDragging ? 0 : 1})} src={second} ref={secondRef} alt=""/>
-      </>
+    <>
+      <img style={{
+        ...styles.second, 
+        opacity: isDragging ? 0 : 1,
+        ...translate
+      }} src={second} ref={secondRef} alt=""/>
+    </>
   );
 }
 
-export const Third = () => {
+export const Third = ({translate}) => {
   const [{ isDragging }, thirdRef, preview] = useDrag(() => ({
       type: 'third',
       collect: (monitor) => ({
@@ -52,19 +56,29 @@ export const Third = () => {
       item: { id: 3 }
   }));
   return (
-      <>
-        <img className='lol' style={Object.assign({}, styles.third, { opacity: isDragging ? 0 : 1})} src={third} ref={thirdRef} alt=""/>
-      </>
+    <>
+      <img style={{
+        ...styles.third, 
+        opacity: isDragging ? 0 : 1,
+        ...translate
+      }} src={third} ref={thirdRef} alt=""/>
+    </>
   );
 }
 
-const MyPreview = ({setTranslate}) => {
+const MyPreview = ({setTranslate, setTranslate2, setTranslate3}) => {
   const {display, itemType, item, style, ref, monitor} = usePreview()
-  // console.log(style?.left, style?.top);
-  console.log(style);
   useEffect(() => {
     if (!style) return;
-    setTranslate(style)
+    if (item.id === 1 && style?.transform.substr(20,5) <= 600 && style?.transform.substr(20,5) >= 200) {
+      setTranslate({...style, pointerEvents: "all"})
+    }
+    if (item.id === 2 && style?.transform.substr(20,5) <= 600 && style?.transform.substr(20,5) >= 200) {
+      setTranslate2({...style, pointerEvents: "all"})
+    }
+    if (item.id === 3 && style?.transform.substr(20,5) <= 600 && style?.transform.substr(20,5) >= 200) {
+      setTranslate3({...style, pointerEvents: "all"})
+    }
   }, [style]); 
   if (!display) {
     return null
@@ -82,20 +96,18 @@ const MyPreview = ({setTranslate}) => {
 
 export const Page15 = () => {
   const [translate, setTranslate] = useState({});
+  const [translate2, setTranslate2] = useState({});
+  const [translate3, setTranslate3] = useState({});
   const [woodCollected, sceneRef] = useDrop(() => ({
-    accept: ['first', 'second', 'third'],
-    drop(item, monitor) {
-      if (item.id === 3) {
-        console.log(1);
-      }}
+    accept: ['first', 'second', 'third']
   }));
   return (
     <div className="page">
       <img src={scene} style={styles.scene} ref={sceneRef} alt="" />
-      <MyPreview setTranslate={setTranslate} />
+      <MyPreview setTranslate={setTranslate} setTranslate2={setTranslate2} setTranslate3={setTranslate3} />
       <First translate={translate} />
-      <Second />
-      <Third />
+      <Second translate={translate2}/>
+      <Third translate={translate3} />
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>
   )
@@ -110,16 +122,16 @@ const styles ={
   first: {
     position: "absolute",
     top: 931,
-    left: 1234
+    left: 1300
   },
   second: {
     position: "absolute",
-    right: 427,
-    bottom: 721
+    left: 1550,
+    top: 1000
   },
   third: {
     position: "absolute",
-    right: 194,
-    bottom: 660
+    left: 1880,
+    top: 920
   }
 }
