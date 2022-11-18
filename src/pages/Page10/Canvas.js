@@ -49,5 +49,8 @@ export const Canvas = ({
 }
 
 const canvasStyle = {
-    border: "1px solid black"
+    border: "1px solid black",
+    position: "absolute",
+    top: 100,
+    right: 100
 }
