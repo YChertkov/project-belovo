@@ -52,10 +52,8 @@ export const Third = () => {
   );
 }
 
-let position;
-
 const MyPreview = () => {
-  const {display, itemType, item, style} = usePreview()
+  const {display, itemType, item, style, ref, monitor} = usePreview()
   if (!display) {
     return null
   }
@@ -66,22 +64,18 @@ const MyPreview = () => {
     return  <img src={second} style={style} alt="" />
   }
   if (item.id === 3) {
-    return  <img className='kek' src={third} style={style} alt="" />
+    console.log(ref)
+    return  <img src={third} style={style} alt="" />
   }
-  console.log(position);
-  position = style;
 }
 
 export const Page15 = () => {
   const [woodCollected, sceneRef] = useDrop(() => ({
     accept: ['first', 'second', 'third'],
-    drop(item) {
+    drop(item, monitor) {
       if (item.id === 3) {
-        const finder = document.getElementsByClassName("kek");
-        const object = document.getElementsByClassName("lol");
-        object[0].style = position;
-      }
-    }
+        console.log(1);
+      }}
   }));
   return (
     <div className="page">
