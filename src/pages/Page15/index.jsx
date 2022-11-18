@@ -6,8 +6,10 @@ import scene from "./scene.png";
 import first from "./first.png";
 import second from "./second.png";
 import third from "./third.png";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-export const First = () => {
+export const First = ({translate}) => {
   const [{ isDragging }, firstRef, preview] = useDrag(() => ({
       type: 'first',
       collect: (monitor) => ({
@@ -17,7 +19,11 @@ export const First = () => {
   }));
   return (
       <>
-        <img style={Object.assign({}, styles.first, { opacity: isDragging ? 0 : 1})} src={first} ref={firstRef} alt=""/>
+        <img style={{
+          ...styles.first, 
+          opacity: isDragging ? 0 : 1,
+          ...translate
+        }} src={first} ref={firstRef} alt=""/>
       </>
   );
 }
@@ -52,8 +58,14 @@ export const Third = () => {
   );
 }
 
-const MyPreview = () => {
+const MyPreview = ({setTranslate}) => {
   const {display, itemType, item, style, ref, monitor} = usePreview()
+  // console.log(style?.left, style?.top);
+  console.log(style);
+  useEffect(() => {
+    if (!style) return;
+    setTranslate(style)
+  }, [style]); 
   if (!display) {
     return null
   }
@@ -64,12 +76,12 @@ const MyPreview = () => {
     return  <img src={second} style={style} alt="" />
   }
   if (item.id === 3) {
-    console.log(ref)
     return  <img src={third} style={style} alt="" />
   }
 }
 
 export const Page15 = () => {
+  const [translate, setTranslate] = useState({});
   const [woodCollected, sceneRef] = useDrop(() => ({
     accept: ['first', 'second', 'third'],
     drop(item, monitor) {
@@ -80,8 +92,8 @@ export const Page15 = () => {
   return (
     <div className="page">
       <img src={scene} style={styles.scene} ref={sceneRef} alt="" />
-      <MyPreview />
-      <First />
+      <MyPreview setTranslate={setTranslate} />
+      <First translate={translate} />
       <Second />
       <Third />
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
@@ -96,9 +108,9 @@ const styles ={
     right: 75
   },
   first: {
-      position: "absolute",
-      bottom: 662,
-      right: 786
+    position: "absolute",
+    top: 931,
+    left: 1234
   },
   second: {
     position: "absolute",

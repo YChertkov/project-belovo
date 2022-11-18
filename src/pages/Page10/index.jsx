@@ -1,31 +1,10 @@
-import ReactPaint from 'react-paint';
+import { Canvas } from "./Canvas.js";
 import img from "./bg.jpg";
 
-export const props = {
-  style: {
-    background: 'tomato',
-    position: "absolute",
-    userDrag: "none",
-    WebkitUserDrag: "none",
-    userSelect: "none",
-    MozUserSelect: "none",
-    WebkitUserSelect: "none",
-    msUserSelect: "none"
-  },
-  brushCol: '#ffffff',
-  lineWidth: 10,
-  className: 'react-paint',
-  height: 500,
-  width: 500,
-  onDraw: () => { console.log('i have drawn!'); },
-};
 
 export const Page10 = () => (
   <div style={{position: "absolute", top: 0}}>
-    {/* <ReactPaint {...props} /> */}
-    <canvas style={styles.canvas}>
-
-    </canvas>
+    <Canvas width={700} height={500} />
     <img src={img} style={styles.img} alt=""/> 
   </div>
 );
