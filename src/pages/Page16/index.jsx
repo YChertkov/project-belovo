@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import img from "./bg.jpg";
-import carp from "./fishs/carp.png";
-import catfish from "./fishs/catfish.png";
-import silver from "./fishs/silver.png";
-import sturgeon from "./fishs/sturgeon.png";
-import birch from "./trees/birch.png";
-import linden from "./trees/linden.png";
-import marple from "./trees/maple.png";
-import rowan from "./trees/rowan.png";
+
 import error from "./../../media/error.png";
 import right from "./../../media/right.png";
 
@@ -17,7 +10,6 @@ export const Page16 = () => {
   const [firstHandler, setFirstHandler] = useState(styles.opacityDown);
   const [secondHandler, setSecondHandler] = useState(styles.opacityDown);
   const [thirdHandler, setThirdHandler] = useState(styles.opacityDown);
-  const [fourthHandler, setFourthHandler] = useState(styles.opacityDown);
   const handleClick = (a) => {
     if (a === 1) {
       setFirstHandler(styles.opacityUp);
@@ -28,15 +20,11 @@ export const Page16 = () => {
     if (a === 3) {
       setThirdHandler(styles.opacityUp);
     }
-    if (a === 4) {
-      setFourthHandler(styles.opacityUp);
-    }
     if (a === 3 && !slide) {
       setTimeout(() => {setHide(styles.opacityDown);}, 1500);
       setTimeout(() => {setFirstHandler(styles.opacityDown);}, 2000);
       setTimeout(() => {setSecondHandler(styles.opacityDown);}, 2000);
       setTimeout(() => {setThirdHandler(styles.opacityDown);}, 2000);
-      setTimeout(() => {setFourthHandler(styles.opacityDown);}, 2000);
       setTimeout(() => {setSlide(true);}, 2050);
       setTimeout(() => {setHide(styles.opacityUp);}, 2100);
     }
@@ -72,15 +60,6 @@ export const Page16 = () => {
         <div style={{...styles.answer, ...thirdHandler}}>
           <img src={slide ? error : right} alt="" />
           <span style={styles.answerText}>{slide ? "Берёза" : "Карп"}</span>
-        </div>
-      </div>
-      <div onClick={() => handleClick(4)} style={{...styles.select, ...styles.fourth, ...hide}}>
-        <div style={styles.imageWrapper}>
-          <img src={slide ? rowan : catfish} alt="" />
-        </div>
-        <div style={{...styles.answer, ...fourthHandler}}>
-          <img src={error} alt="" />
-          <span style={styles.answerText}>{slide ? "Рябина" : "Сом"}</span>
         </div>
       </div>
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
