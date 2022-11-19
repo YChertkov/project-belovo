@@ -22,9 +22,10 @@ export const Page10 = () => {
     contextRef.current = context;
   }, [color]);
   const startDrawing = ({nativeEvent}) => {
-    const {offsetX, offsetY} = nativeEvent;
+    const {pageX, pageY} = nativeEvent.touches[0];
     contextRef.current.beginPath();
-    contextRef.current.moveTo(offsetX, offsetY);
+    contextRef.current.moveTo(pageX-1149, pageY-354);
+    contextRef.current.stroke();
     setIsDrawing(true);
   };
   const stopDrawing = () => {
@@ -35,10 +36,9 @@ export const Page10 = () => {
     if (!isDrawing) {
       return;
     }
-    const {offsetX, offsetY} = nativeEvent;
-    contextRef.current.lineTo(offsetX, offsetY);
+    const {pageX, pageY} = nativeEvent.touches[0];
+    contextRef.current.lineTo(pageX-1149, pageY-354);
     contextRef.current.stroke();
-    console.log(1);
   };
   const clearCanvas = () => {
     const canvas = canvasRef.current;
@@ -52,9 +52,9 @@ export const Page10 = () => {
       style={styles.canvas}
       width={943}
       height={700}
-      onMouseDown={startDrawing}
-      onMouseUp={stopDrawing}
-      onMouseMove={draw}
+      onTouchStart={startDrawing}
+      onTouchEnd={stopDrawing}
+      onTouchMove={draw}
       ref={canvasRef}
       />
       <img onClick={() => clearCanvas()} src={save} style={styles.save} alt="" />
