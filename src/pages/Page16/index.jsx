@@ -1,65 +1,85 @@
 import { useState } from 'react';
 import img from "./bg.jpg";
-
+import birch1 from "./trees/birch.png";
+import linden1 from "./trees/linden.png";
+import rowan1 from "./trees/rowan.png";
+import birch2 from "./treeLeaf/birch.png";
+import linden2 from "./treeLeaf/linden.png";
+import rowan2 from "./treeLeaf/rowan.png";
+import birch3 from "./fetus/birch.png";
+import linden3 from "./fetus/linden.png";
+import rowan3 from "./fetus/rowan.png";
 import error from "./../../media/error.png";
 import right from "./../../media/right.png";
 
 export const Page16 = () => {
+  const leftPic = [birch1, linden2, rowan3];
+  const middlePic = [linden1, rowan2, birch3];
+  const rightPic = [rowan1, birch2, linden3];
+  const leftText = ["Берёза", "Липа", "Рябина"];
+  const middleText = ["Липа", "Рябина", "Бёреза"];
+  const rightText = ["Рябина", "Берёза", "Липа"];
+  const rightAnswer = ["middle", "left", "right"];
+  const [page, setPage] = useState(0);
+  const [justify, setJustify] = useState(null);
   const [slide, setSlide] = useState(false);
   const [hide, setHide] = useState(styles.opacityUp);
   const [firstHandler, setFirstHandler] = useState(styles.opacityDown);
   const [secondHandler, setSecondHandler] = useState(styles.opacityDown);
   const [thirdHandler, setThirdHandler] = useState(styles.opacityDown);
   const handleClick = (a) => {
-    if (a === 1) {
+    if (a === "left") {
       setFirstHandler(styles.opacityUp);
     }
-    if (a === 2) {
+    if (a === "middle") {
       setSecondHandler(styles.opacityUp);
     }
-    if (a === 3) {
+    if (a === "right") {
       setThirdHandler(styles.opacityUp);
     }
-    if (a === 3 && !slide) {
+    if (a === rightAnswer[page] && page < 2) {
       setTimeout(() => {setHide(styles.opacityDown);}, 1500);
-      setTimeout(() => {setFirstHandler(styles.opacityDown);}, 2000);
-      setTimeout(() => {setSecondHandler(styles.opacityDown);}, 2000);
-      setTimeout(() => {setThirdHandler(styles.opacityDown);}, 2000);
-      setTimeout(() => {setSlide(true);}, 2050);
-      setTimeout(() => {setHide(styles.opacityUp);}, 2100);
+      setTimeout(() => {setFirstHandler(styles.opacityDown);}, 1500);
+      setTimeout(() => {setSecondHandler(styles.opacityDown);}, 1500);
+      setTimeout(() => {setThirdHandler(styles.opacityDown);}, 1500);
+      setTimeout(() => {setPage(page + 1);}, 1900);
+      setTimeout(() => {setJustify(styles.notFirst);}, 1900);
+      setTimeout(() => {setHide(styles.opacityUp);}, 1910);
     }
   };
 
   return (
     <div className="page">
-      <div style={{...styles.headerWrapper, ...hide}}>
-        <span style={styles.header}>{slide ? "Определи из предложенных деревьев липу" : "Определи из предложенных рыб карпа"}</span>
+      <div style={styles.headerWrapper}>
+        <span style={styles.header}>Определи из предложенных деревьев липу</span>
       </div>
-      <div onClick={() => handleClick(1)} style={{...styles.select, ...styles.first, ...hide}}>
-        <div style={styles.imageWrapper}>
-          <img src={slide ? marple : silver} alt="" />
+      <div style={styles.content}>
+        <div onClick={() => handleClick("left")} style={{...styles.select, ...styles.first, ...hide, ...justify}}>
+          <div style={styles.imageWrapper}>
+            <img src={leftPic[page]} alt="" />
+          </div>
+          <div style={{...styles.answer, ...firstHandler}}>
+            <img src={rightAnswer[page] === "left" ? right : error} alt="" />
+            <span style={styles.answerText}>{leftText[page]}</span>
+          </div>
         </div>
-        <div style={{...styles.answer, ...firstHandler}}>
-          <img src={error} alt="" />
-          <span style={styles.answerText}>{slide ? "Клён" : "Толстолобик"}</span>
+        <div onClick={() => handleClick("middle")} style={{...styles.select, ...styles.second, ...hide, ...justify}}>
+          <div style={styles.imageWrapper}>
+            <img style={styles.image} src={middlePic[page]} alt="" />
+          </div>
+          <div style={{...styles.answer, ...secondHandler}}>
+            <img src={rightAnswer[page] === "middle" ? right : error} alt="" />
+            <span style={styles.answerText}>{middleText[page]}</span>
+          </div>
         </div>
-      </div>
-      <div onClick={() => handleClick(2)} style={{...styles.select, ...styles.second, ...hide}}>
-        <div style={styles.imageWrapper}>
-          <img style={styles.image} src={slide ? linden : sturgeon} alt="" />
-        </div>
-        <div style={{...styles.answer, ...secondHandler}}>
-          <img src={slide ? right : error} alt="" />
-          <span style={styles.answerText}>{slide ? "Липа" : "Осётр"}</span>
-        </div>
-      </div>
-      <div onClick={() => handleClick(3)} style={{...styles.select, ...styles.third, ...hide}}>
-        <div style={styles.imageWrapper}>
-          <img src={slide ? birch : carp} alt="" />
-        </div>
-        <div style={{...styles.answer, ...thirdHandler}}>
-          <img src={slide ? error : right} alt="" />
-          <span style={styles.answerText}>{slide ? "Берёза" : "Карп"}</span>
+        <div onClick={() => handleClick("right")} style={{...styles.select, ...styles.third, ...hide, ...justify}}>
+          <div style={styles.imageWrapper}>
+            <img src={rightPic[page]} alt="" />
+          </div>
+          <div style={{...styles.answer, ...thirdHandler}}>
+            <img src={rightAnswer[page] === "right" ? right : error} alt="" />
+            <span style={styles.answerText}>{rightText[page]}</span>
+          </div>
         </div>
       </div>
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
@@ -68,6 +88,15 @@ export const Page16 = () => {
 };
 
 const styles = {
+  content: {
+    position: "absolute",
+    display: "flex",
+    width: 912,
+    height: 677,
+    bottom: 55,
+    left: 99,
+    justifyContent: "space-between"
+  },
   headerWrapper: {
     position: "absolute",
     left: 90,
@@ -86,39 +115,22 @@ const styles = {
       width: "90%"
   },
   select: {
-    position: "absolute",
-    width: 453,
-    height: 275,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-end"
   },
-  first: {
-    bottom: 450,
-    left: 68
-  },
-  second: {
-    bottom: 450,
-    left: 547
-  },
-  third: {
-    bottom: 101,
-    left: 65
-  },
-  fourth: {
-    bottom: 92,
-    left: 535
+  notFirst: {
+    justifyContent: "center"
   },
   imageWrapper: {
-    height: 217,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
   },
   answer: {
     display: "flex",
-    marginTop: 10,
+    marginTop: 43,
     alignItems: "center"
   },
   answerText: {
@@ -130,10 +142,10 @@ const styles = {
   },
   opacityDown: {
     opacity: 0,
-    transition: "opacity 0.5s"
+    transition: "opacity 0.4s"
   },
   opacityUp: {
     opacity: 1,
-    transition: "opacity 0.5s"
+    transition: "opacity 0.4s"
   }
 }
