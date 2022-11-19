@@ -43,7 +43,7 @@ export const Page10 = () => {
   const clearCanvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    context.fillStyle = "white";
+    context.fillStyle = "rgba(0,0,0,0)";
     context.fillRect(0, 0, canvas.width, canvas.height);
   }
   return (
@@ -58,10 +58,10 @@ export const Page10 = () => {
       ref={canvasRef}
       />
       <img onClick={() => clearCanvas()} src={save} style={styles.save} alt="" />
-      <img onClick={() => setColor("#070707")} src={eraser} style={styles.eraser} alt="" />
+      <img onClick={() => setColor("rgba(0,0,0,0)")} src={eraser} style={styles.eraser} alt="" />
       <img onClick={() => setColor("#ff0000")} src={red} style={styles.red} alt="" />
       <img onClick={() => setColor("#005be4")} src={blue} style={styles.blue} alt="" />
-      <img onClick={() => setColor("black")} src={black} style={styles.black} alt="" />
+      <img onClick={() => setColor("#070707")} src={black} style={styles.black} alt="" />
       <img onClick={() => setColor("#ffe000")} src={yellow} style={styles.yellow} alt="" />
       <img onClick={() => setColor("#789932")} src={green} style={styles.green} alt="" />
       <img src={img} style={styles.img} alt=""/> 
