@@ -4,26 +4,22 @@ import closed from "./closed.png";
 import opened from "./opened.png";
 import touch from "./touch.png";
 import record from "./record.mp3";
+import open from "./open.mp3";
 
 export const Page12 = () => {
-  document.addEventListener('keydown', function(event) {
-    if (event.code === 'ArrowRight' || event.code === 'ArrowLeft') {
-      mp3.currentTime = 0;
-      mp3.pause();
-    }
-  });
-  const [handle, setHandle] = useState(false);
-  const [opacity, setOpacity] = useState(styles.opacityUp);
-  const mp3 = new Audio(record);
+  const [handle, setHandle] = useState(0);
+  const openSound = new Audio(open);
   if (handle === true) {
-    mp3.play();
-    setHandle(1);
-    setOpacity(styles.opacityDown);
+    openSound.play();
+  };
+  if (handle === false) {
+    openSound.play();
   };
   return (
     <div className="page">
-      <img onClick={() => setHandle(true)} src={handle ? opened : closed} style={styles.image} alt="" />
-      <img style={{...styles.touch, ...opacity}} src={touch} alt="" />
+      <img onClick={() => setHandle(!handle)} src={handle ? opened : closed} style={styles.image} alt="" />
+      <img style={styles.touch} src={touch} alt="" />
+      {!!handle ? <audio src={record} autoPlay></audio> : null}
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>
   )
