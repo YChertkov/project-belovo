@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import img from "./bg.jpg";
 import coal from "./resourses/coal.png";
 import iron from "./resourses/iron.png";
@@ -5,16 +6,24 @@ import lime from "./resourses/limestone.png";
 import zinc from "./resourses/zinc.png";
 import error from "../../media/error.png";
 import right from "../../media/right.png";
-import { useState } from 'react';
+import video from "./video.mp4";
 
 export function Page7() {
   const [coalHandler, setCoalHandl] = useState(styles.hide);
   const [ironHandler, setIronHandl] = useState(styles.hide);
   const [limeHandler, setLimeHandl] = useState(styles.hide);
   const [zincHandler, setZincHandl] = useState(styles.hide);
+  const [videoHandler, setVideoHandler] = useState(false);
+  setTimeout(() => setVideoHandler(true), 5700);
+  setTimeout(() => setVideoHandler(false), 12700);
   return (
     <div className="page">
-        <div onClick={() => setIronHandl(styles.show)} style={styles.iron}>
+        {videoHandler ? <video
+          src={video}
+          style={styles.video}
+          autoPlay
+        /> : null}
+        {/* <div onClick={() => setIronHandl(styles.show)} style={styles.iron}>
             <img width={356} style={styles.image} src={iron} alt=""/>
             <div style={ironHandler}>
                 <img src={error} alt="" />
@@ -41,13 +50,20 @@ export function Page7() {
                 <img src={error} alt="" />
                 <span style={styles.text}>Известняк</span>
             </div>
-        </div>
+        </div> */}
         <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/>  
     </div>
   )
 };
 
 const styles = {
+    video: {
+        position: "absolute",
+        width: 2160,
+        height: 1920,
+        top: 0,
+        left: 0
+    },
     hide: {
         display: "flex",
         alignItems: "center",

@@ -81,8 +81,8 @@ export const Page3 = () => {
 
   return (
     <div className="page">
-      <img className='hay' style={hayAnimation} src={hayHandler} ref={hayRef} alt=""/>
-      <img className="wood" style={woodAnimation} src={woodHandler} ref={woodRef} alt=""/>
+      <img className='hay' style={{...hayAnimation, ...(hayHandler === hayDone ? styles.hay : null)}} src={hayHandler} ref={hayRef} alt=""/>
+      <img className="wood" style={{...woodAnimation}} src={woodHandler} ref={woodRef} alt=""/>
       <img className="wheat" style={wheatAnimation} src={wheatHandler} ref={wheatRef} alt=""/>
       <div>
         <MyPreview />
@@ -115,6 +115,9 @@ const styles = {
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
   },
+  hayDone: {
+    right: 690
+  },
   wood: {
     position: "absolute",
     bottom: 1211,
@@ -133,6 +136,10 @@ const styles = {
     right: 395,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
+  },
+  woodDone: {
+    bottom: 1175,
+    right: 420
   },
   wheat: {
     position: "absolute",
