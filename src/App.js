@@ -2,17 +2,20 @@ import { useEffect, useState, useRef } from 'react';
 import { PAGE_COUNT, VIDEO_DURATION } from './consts';
 import { DndProvider } from 'react-dnd';
 import { TouchBackend } from 'react-dnd-touch-backend';
+import img from "./bg.jpg";
 
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(10);
+  const [pageIndexNow, setPageIndexNow] = useState(0);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
   const [videosMinus, setVideosMinus] = useState({});
   const [videosPlus, setVideosPlus] = useState({});
   const [pageComponents, setPagesComponents] = useState([]);
+  const [opacity, setOpacity] = useState(styles.opacityUp);
+  const [video, setVideo] = useState(styles.videoDown);
 
   const viewerRef = useRef(null);
 
@@ -22,20 +25,30 @@ export const App = () => {
     let newPageIndex;
 
     if (keyCode === 37) {
+      setOpacity(styles.opacityDown);
       newPageIndex = pageIndexNow - 1 >= 0 ? pageIndexNow - 1 : pageIndexNow;
+      setTimeout(() => setVideo(styles.videoUp), 1001);
+      setTimeout(() => setOpacity(styles.opacityUp), 2000);
+      setTimeout(() => setVideo(styles.videoDown), 7000);
     }
 
     if (keyCode === 39) {
+      setOpacity(styles.opacityDown);
       newPageIndex = pageIndexNow + 1 < PAGE_COUNT ? pageIndexNow + 1 : pageIndexNow;
+      setTimeout(() => setVideo(styles.videoUp), 1001);
+      setTimeout(() => setOpacity(styles.opacityUp), 2000);
+      setTimeout(() => setVideo(styles.videoDown), 7000);
     }
 
     if (newPageIndex !== pageIndexNow) {
-      setIsPlus(keyCode === 39);
-      setIsAnimate(true);
-      setTimeout(() => setPageIndexNow(newPageIndex), 350);
-      setVideoIndexNow(newPageIndex);
+      setTimeout(() => {
+        setIsPlus(keyCode === 39);
+        setIsAnimate(true);
+        setTimeout(() => setPageIndexNow(newPageIndex),150);
+        setVideoIndexNow(newPageIndex);
+      }, 1001);
     }
-  }
+  };
 
   useEffect(() => {
     const pageComponents = [];
@@ -75,10 +88,11 @@ export const App = () => {
         onKeyDown={handlePress}
         ref={viewerRef}
       >
+        <img src={img} style={{width: "2160px", height: "1920px", position: "absolute", zIndex: -1}} alt=""/> 
         {pageComponents.length && (
-          <>
+          <div style={opacity}>
             <Page Component={pageComponents[pageIndexNow]} />
-          </>
+          </div>
         )}
         <video
           src={
@@ -88,10 +102,29 @@ export const App = () => {
           }
           style={{
             display: isAnimate ? "block" : "none",
+            ...video
           }}
           autoPlay
         />
       </div>
     </DndProvider>
   );
+}
+const styles = {
+  opacityDown: {
+    opacity: 0,
+    transition: "opacity 1s"
+  },
+  opacityUp: {
+    opacity: 1,
+    transition: "opacity 1s"
+  },
+  videoDown: {
+    opacity: 0,
+    transition: "opacity 1s"
+  },
+  videoUp: {
+    opacity: 1,
+    transition: "opacity 10s"
+  }
 }
