@@ -20,8 +20,8 @@ export const Axe = () => {
 const styles ={
     style: {
         position: "absolute",
-        bottom: 678,
-        left: 1304
+        bottom: 658,
+        right: 686
     },
     size: {
         width: 200,

@@ -98,58 +98,58 @@ export const Page3 = () => {
 const styles = {
   hay: {
     position: "absolute",
-    bottom: 1170,
-    right: 695
+    bottom: 1176,
+    right: 756
   },
   hay2: {
     position: "absolute",
-    bottom: 1170,
-    right: 695,
+    bottom: 1176,
+    right: 756,
     transform: "translateX(20px)",
     transitionDuration: "70ms"
   },
   hay3: {
     position: "absolute",
-    bottom: 1170,
-    right: 695,
+    bottom: 1176,
+    right: 756,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
   },
   wood: {
     position: "absolute",
-    bottom: 1170,
-    right: 357
+    bottom: 1211,
+    right: 395
   },
   wood2: {
     position: "absolute",
-    bottom: 1170,
-    right: 357,
+    bottom: 1211,
+    right: 395,
     transform: "translateX(20px)",
     transitionDuration: "70ms"
   },
   wood3: {
     position: "absolute",
-    bottom: 1170,
-    right: 357,
+    bottom: 1211,
+    right: 395,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
   },
   wheat: {
     position: "absolute",
     bottom: 1170,
-    left: 1774
+    right: 78
   },
   wheat2: {
     position: "absolute",
     bottom: 1170,
-    right: 18,
+    right: 78,
     transform: "translateX(20px)",
     transitionDuration: "70ms"
   },
   wheat3: {
     position: "absolute",
     bottom: 1170,
-    right: 18,
+    right: 78,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
   }

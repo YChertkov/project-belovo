@@ -7,7 +7,7 @@ import img from "./bg.jpg";
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(1);
+  const [pageIndexNow, setPageIndexNow] = useState(16);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -25,19 +25,23 @@ export const App = () => {
     let newPageIndex;
 
     if (keyCode === 37) {
-      setOpacity(styles.opacityDown);
       newPageIndex = pageIndexNow - 1 >= 0 ? pageIndexNow - 1 : pageIndexNow;
-      setTimeout(() => setVideo(styles.videoUp), 601);
-      setTimeout(() => setOpacity(styles.opacityUp), 800);
-      setTimeout(() => setVideo(styles.videoDown), 6700);
+      if (pageIndexNow > 0) {
+        setOpacity(styles.opacityDown);
+        setTimeout(() => setVideo(styles.videoUp), 601);
+        setTimeout(() => setOpacity(styles.opacityUp), 800);
+        setTimeout(() => setVideo(styles.videoDown), 6700);
+      }
     }
 
     if (keyCode === 39) {
-      setOpacity(styles.opacityDown);
       newPageIndex = pageIndexNow + 1 < PAGE_COUNT ? pageIndexNow + 1 : pageIndexNow;
-      setTimeout(() => setVideo(styles.videoUp), 601);
-      setTimeout(() => setOpacity(styles.opacityUp), 800);
-      setTimeout(() => setVideo(styles.videoDown), 6700);
+      if (pageIndexNow < PAGE_COUNT-1) {
+        setOpacity(styles.opacityDown);
+        setTimeout(() => setVideo(styles.videoUp), 601);
+        setTimeout(() => setOpacity(styles.opacityUp), 800);
+        setTimeout(() => setVideo(styles.videoDown), 6700);
+      }
     }
 
     if (newPageIndex !== pageIndexNow) {
