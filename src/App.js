@@ -28,16 +28,16 @@ export const App = () => {
       setOpacity(styles.opacityDown);
       newPageIndex = pageIndexNow - 1 >= 0 ? pageIndexNow - 1 : pageIndexNow;
       setTimeout(() => setVideo(styles.videoUp), 1001);
-      setTimeout(() => setOpacity(styles.opacityUp), 2000);
-      setTimeout(() => setVideo(styles.videoDown), 7000);
+      setTimeout(() => setOpacity(styles.opacityUp), 1200);
+      setTimeout(() => setVideo(styles.videoDown), 7100);
     }
 
     if (keyCode === 39) {
       setOpacity(styles.opacityDown);
       newPageIndex = pageIndexNow + 1 < PAGE_COUNT ? pageIndexNow + 1 : pageIndexNow;
       setTimeout(() => setVideo(styles.videoUp), 1001);
-      setTimeout(() => setOpacity(styles.opacityUp), 2000);
-      setTimeout(() => setVideo(styles.videoDown), 7500);
+      setTimeout(() => setOpacity(styles.opacityUp), 1200);
+      setTimeout(() => setVideo(styles.videoDown), 7100);
     }
 
     if (newPageIndex !== pageIndexNow) {
@@ -46,7 +46,7 @@ export const App = () => {
         setIsAnimate(true);
         setTimeout(() => setPageIndexNow(newPageIndex),150);
         setVideoIndexNow(newPageIndex);
-      }, 1001);
+      }, 601);
     }
   };
 
@@ -76,7 +76,7 @@ export const App = () => {
 
   useEffect(() => {
     if (viewerRef) {
-      viewerRef.current.focus()
+      viewerRef.current.focus();
     }
   }, [viewerRef]);
 
@@ -88,7 +88,7 @@ export const App = () => {
         onKeyDown={handlePress}
         ref={viewerRef}
       >
-        {/* <img src={img} style={{width: "2160px", height: "1920px", position: "absolute", zIndex: -1}} alt=""/>  */}
+        <img src={img} style={{width: "2160px", height: "1920px", position: "absolute", zIndex: -1}} alt=""/>
         {pageComponents.length && (
           <div style={opacity}>
             <Page Component={pageComponents[pageIndexNow]} />
@@ -113,7 +113,7 @@ export const App = () => {
 const styles = {
   opacityDown: {
     opacity: 0,
-    transition: "opacity 1s"
+    transition: "opacity 0.6s"
   },
   opacityUp: {
     opacity: 1,
@@ -125,6 +125,6 @@ const styles = {
   },
   videoUp: {
     opacity: 1,
-    transition: "opacity 10s"
+    transition: "opacity 0.6s"
   }
 }
