@@ -7,7 +7,7 @@ import img from "./bg.jpg";
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(16);
+  const [pageIndexNow, setPageIndexNow] = useState(3);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -63,13 +63,13 @@ export const App = () => {
 
     const videosPlus = {};
     for (let i = 0; i <= PAGE_COUNT; i += 1) {
-      videosPlus[i] = require(`./videos/plus/${i}.mp4`);
+      videosPlus[i] = require(`./videos/${i}.mp4`);
     }
     setVideosPlus(videosPlus);
 
     const videosMinus = {};
     for (let i = 1; i <= PAGE_COUNT - 1; i += 1) {
-      videosMinus[i] = require(`./videos/minus/${i}.mp4`);
+      videosMinus[i] = require(`./videos/${i-2}.mp4`);
     }
     setVideosMinus(videosMinus);
   }, []);

@@ -45,7 +45,10 @@ export const Page10 = () => {
     const context = canvas.getContext("2d");
     context.fillStyle = "#ffe000";
     context.fillRect(0, 0, canvas.width, canvas.height);
-  }
+  };
+  const save = () => {
+
+  };
   return (
     <div style={{position: "absolute", top: 0}}>
       <canvas
