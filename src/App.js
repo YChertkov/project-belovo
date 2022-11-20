@@ -37,7 +37,7 @@ export const App = () => {
       newPageIndex = pageIndexNow + 1 < PAGE_COUNT ? pageIndexNow + 1 : pageIndexNow;
       setTimeout(() => setVideo(styles.videoUp), 1001);
       setTimeout(() => setOpacity(styles.opacityUp), 2000);
-      setTimeout(() => setVideo(styles.videoDown), 7000);
+      setTimeout(() => setVideo(styles.videoDown), 7500);
     }
 
     if (newPageIndex !== pageIndexNow) {
@@ -88,7 +88,7 @@ export const App = () => {
         onKeyDown={handlePress}
         ref={viewerRef}
       >
-        <img src={img} style={{width: "2160px", height: "1920px", position: "absolute", zIndex: -1}} alt=""/> 
+        {/* <img src={img} style={{width: "2160px", height: "1920px", position: "absolute", zIndex: -1}} alt=""/>  */}
         {pageComponents.length && (
           <div style={opacity}>
             <Page Component={pageComponents[pageIndexNow]} />
