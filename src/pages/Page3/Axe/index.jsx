@@ -12,7 +12,7 @@ export const Axe = () => {
 
     return (
         <>
-            <img style={Object.assign({}, styles.style, { opacity: isDragging ? 0 : 1})} src={img1} ref={drag} alt=""/>
+            <img style={{...styles.style, ...{ opacity: isDragging ? 0 : 1}}} src={img1} ref={drag} alt=""/>
         </>
     );
 }

@@ -22,12 +22,14 @@ export const Page10 = () => {
     context.strokeStyle = color;
     context.lineWidth = 5;
     contextRef.current = context;
+    context.fillStyle = "#070707";
   }, [color]);
   const startDrawing = ({nativeEvent}) => {
     const {pageX, pageY} = nativeEvent.touches[0];
     contextRef.current.beginPath();
     contextRef.current.moveTo(pageX-1149, pageY-354);
     contextRef.current.stroke();
+    contextRef.current.fillRect(pageX-1149, pageY-354, 5, 5);
     setIsDrawing(true);
   };
   const stopDrawing = () => {
@@ -69,6 +71,7 @@ export const Page10 = () => {
     setColor(color);
     context.lineWidth = 5;
     context.globalCompositeOperation = 'source-over';
+    context.fillStyle = color;
   };
   return (
     <div style={{position: "absolute", top: 0}}>

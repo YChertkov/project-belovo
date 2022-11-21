@@ -9,7 +9,7 @@ import plane from "./media/plane.png";
 import radio from "./media/radio.png";
 import scope from "./media/scope.png";
 import tank from "./media/tank.png";
-import right from "../../media/right.png";
+import right from "./media/right.png";
 
 export const Scope = () => {
   const [{ isDragging }, drag, preview] = useDrag(() => ({
@@ -145,7 +145,7 @@ const styles = {
     position: "absolute",
     display: "flex",
     flexDirection: "column",
-    right: 735,
+    right: 753,
     top: 785
   },
   radio: {
@@ -166,9 +166,14 @@ const styles = {
     marginTop: 25
   },
   radioText: {
-    left: 16,
+    left: 15,
     position: "absolute",
-    top: 191
+    top: 192
+  },
+  scopeText: {
+    position: "absolute",
+    top: 191,
+    left: -37
   },
   text: {
     marginTop: 35,
@@ -245,20 +250,23 @@ const styles = {
   },
   right1: {
     position: "absolute",
-    top: 350,
-    right: 850,
+    top: 240,
+    right: 765,
+    width: 200,
     opacity: 0
   },
   right2: {
     position: "absolute",
-    right: 500,
-    top: 350,
+    top: 240,
+    right: 430,
+    width: 200,
     opacity: 0
   },
   right3: {
     position: "absolute",
-    top: 350,
-    right: 180,
+    top: 240,
+    right: 110,
+    width: 200,
     opacity: 0
   },
   opacityUp: {

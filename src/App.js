@@ -7,7 +7,7 @@ import img from "./bg.jpg";
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(0);
+  const [pageIndexNow, setPageIndexNow] = useState(2);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);
@@ -105,7 +105,7 @@ export const App = () => {
               videosMinus[videoIndexNow + 1]
           }
           style={{
-            display: isAnimate ? "block" : "block",
+            display: isAnimate ? "block" : "none",
             ...video,
             zIndex: 100
           }}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import img from "./bg.jpg";
 import closed from "./closed.png";
 import opened from "./opened.png";
@@ -8,15 +8,13 @@ import open from "./open.mp3";
 export const Page12 = () => {
   const [handle, setHandle] = useState(0);
   const openSound = new Audio(open);
-  if (handle === true) {
+  const boxOpen = () => {
     openSound.play();
-  };
-  if (handle === false) {
-    openSound.play();
+    setHandle(!handle);
   };
   return (
     <div className="page">
-      <img onClick={() => setHandle(!handle)} src={handle ? opened : closed} style={styles.image} alt="" />
+      <img onClick={() => boxOpen()} src={handle ? opened : closed} style={styles.image} alt="" />
       {!!handle ? <audio src={record} autoPlay></audio> : null}
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>

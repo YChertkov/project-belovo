@@ -1,9 +1,9 @@
 import { useDrop } from 'react-dnd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePreview } from 'react-dnd-preview';
 import { Axe } from './Axe';
 import { Fork } from './Fork';
 import { Sickle } from './Sickle';
-import { usePreview } from 'react-dnd-preview';
 import img from "./bg.jpg";
 import hay from "./hay/hay.png";
 import hayDone from "./hay/hayDone.png";
@@ -22,8 +22,13 @@ export const Page3 = () => {
   const [woodAnimation, setWoodAnimation] = useState(styles.wood);
   const [wheatAnimation, setWheatAnimation] = useState(styles.wheat);
   const [hayAnimation, setHayAnimation] = useState(styles.hay);
+  const [opacity, setOpacity] = useState(styles.opacityDown);
 
-  const [woodCollected, woodRef] = useDrop(() => ({
+  useEffect(() => {
+    setTimeout(() => setOpacity(styles.opacityUp), 6600);
+  }, []);
+
+  const [, woodRef] = useDrop(() => ({
     accept: ['axe', 'fork', 'sickle'],
     drop(item) {
       if (item.id === 0) {
@@ -36,7 +41,7 @@ export const Page3 = () => {
       }
     }
   }));
-  const [hayCollected, hayRef] = useDrop(() => ({
+  const [, hayRef] = useDrop(() => ({
     accept: ['axe', 'fork', 'sickle'],
     drop(item) {
       if (item.id === 2) {
@@ -49,7 +54,7 @@ export const Page3 = () => {
       }
     }
   }));
-  const [wheatCollected, wheatRef] = useDrop(() => ({
+  const [, wheatRef] = useDrop(() => ({
     accept: ['axe', 'fork', 'sickle'],
     drop(item) {
       if (item.id === 1) {
@@ -81,10 +86,10 @@ export const Page3 = () => {
 
   return (
     <div className="page">
-      <img className='hay' style={{...hayAnimation, ...(hayHandler === hayDone ? styles.hay : null)}} src={hayHandler} ref={hayRef} alt=""/>
-      <img className="wood" style={{...woodAnimation}} src={woodHandler} ref={woodRef} alt=""/>
-      <img className="wheat" style={wheatAnimation} src={wheatHandler} ref={wheatRef} alt=""/>
-      <div>
+      <img className='hay' style={{...hayAnimation, ...(hayHandler === hayDone ? styles.hay : null), ...opacity}} src={hayHandler} ref={hayRef} alt=""/>
+      <img className="wood" style={{...woodAnimation, ...opacity}} src={woodHandler} ref={woodRef} alt=""/>
+      <img className="wheat" style={{...wheatAnimation, ...opacity}} src={wheatHandler} ref={wheatRef} alt=""/>
+      <div style={opacity}>
         <MyPreview />
         {woodHandler === woodDone ? null : <Axe />}
         {hayHandler === hayDone ? null : <Fork />}
@@ -159,5 +164,11 @@ const styles = {
     right: 78,
     transform: "translateX(-20px)",
     transitionDuration: "70ms"
-  }
+  },
+  opacityDown: {
+    opacity: 0,
+  },
+  opacityUp: {
+    opacity: 1,
+  },
 }

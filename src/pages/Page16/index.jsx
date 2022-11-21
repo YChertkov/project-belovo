@@ -50,9 +50,6 @@ export const Page16 = () => {
 
   return (
     <div className="page">
-      <div style={styles.headerWrapper}>
-        <span style={styles.header}>Определи из предложенных деревьев липу</span>
-      </div>
       <div style={styles.content}>
         <div onClick={() => handleClick("left")} style={{...styles.select, ...styles.first, ...hide, ...justify}}>
           <div style={styles.imageWrapper}>
@@ -93,26 +90,9 @@ const styles = {
     display: "flex",
     width: 912,
     height: 677,
-    bottom: 55,
+    bottom: 45,
     left: 99,
     justifyContent: "space-between"
-  },
-  headerWrapper: {
-    position: "absolute",
-    left: 90,
-    top: 1002,
-    width: 947,
-    height: 156,
-    display: "flex",
-    justifyContent: "center"
-  },
-  header: {
-      fontFamily: "Praho Pro",
-      fontWeight: 500,
-      fontSize: 48,
-      lineHeight: "78px",
-      textAlign: "center",
-      width: "90%"
   },
   select: {
     display: "flex",
