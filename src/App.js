@@ -7,7 +7,7 @@ import img from "./bg.jpg";
 const Page = ({ Component }) => <Component />
 
 export const App = () => {
-  const [pageIndexNow, setPageIndexNow] = useState(0);
+  const [pageIndexNow, setPageIndexNow] = useState(10);
   const [videoIndexNow, setVideoIndexNow] = useState(0);
   const [isPlus, setIsPlus] = useState(true);
   const [isAnimate, setIsAnimate] = useState(false);

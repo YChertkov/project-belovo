@@ -103,11 +103,11 @@ export const Page15 = () => {
   }));
   return (
     <div className="page">
-      <img src={scene} style={styles.scene} ref={sceneRef} alt="" />
+      {/* <img src={scene} style={styles.scene} ref={sceneRef} alt="" />
       <MyPreview setTranslate={setTranslate} setTranslate2={setTranslate2} setTranslate3={setTranslate3} />
       <First translate={translate} />
       <Second translate={translate2}/>
-      <Third translate={translate3} />
+      <Third translate={translate3} /> */}
       <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/> 
     </div>
   )

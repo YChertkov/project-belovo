@@ -46,8 +46,14 @@ export const Page10 = () => {
     context.fillStyle = "#ffe000";
     context.fillRect(0, 0, canvas.width, canvas.height);
   };
-  const save = () => {
-
+  const saveCanvas = () => {
+    const dataURL = canvasRef.current.toDataURL("image/png", 1.0);
+    const a = document.createElement('a');
+    a.href = dataURL;
+    a.download = "un.png";
+    document.body.appendChild(a);
+    a.click();
+    console.log(dataURL);
   };
   return (
     <div style={{position: "absolute", top: 0}}>
@@ -60,7 +66,7 @@ export const Page10 = () => {
       onTouchMove={draw}
       ref={canvasRef}
       />
-      <img onClick={() => clearCanvas()} src={save} style={styles.save} alt="" />
+      <img onClick={() => saveCanvas()} src={save} style={styles.save} alt="" />
       <img onClick={() => setColor("rgba(0,0,0,0)")} src={eraser} style={styles.eraser} alt="" />
       <img onClick={() => setColor("#ff0000")} src={red} style={styles.red} alt="" />
       <img onClick={() => setColor("#005be4")} src={blue} style={styles.blue} alt="" />
@@ -94,10 +100,8 @@ const styles = {
   },
   eraser: {
     position: "absolute",
-    top: 10,
-    right: 150,
-    width: 100,
-    height: 100
+    bottom: 715,
+    right: 293
   },
   red: {
     position: "absolute",
