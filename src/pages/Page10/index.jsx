@@ -50,10 +50,9 @@ export const Page10 = () => {
     const dataURL = canvasRef.current.toDataURL("image/png", 1.0);
     const a = document.createElement('a');
     a.href = dataURL;
-    a.download = "un.png";
+    a.download = `${(Math.random() + 1).toString(36).substring(7)}.png`;
     document.body.appendChild(a);
     a.click();
-    console.log(dataURL);
   };
   return (
     <div style={{position: "absolute", top: 0}}>
