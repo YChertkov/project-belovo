@@ -22,8 +22,8 @@ export const Scope = () => {
 
   return (
       <div style={styles.scope}>
-          <img width={200} height={191} style={Object.assign({}, styles.scope1, { opacity: isDragging ? 0 : 1})} src={scope} ref={drag} alt=""/>
-          <span style={{...styles.text, ...(isDragging ? styles.opacityDown : styles.opacityUp)}}>Прицел</span>
+          <img width={200} height={191} style={{...styles.scope1, ...{ opacity: isDragging ? 0 : 1}}} src={scope} ref={drag} alt=""/>
+          <span style={{...styles.text, ...(isDragging ? styles.opacityDown : styles.opacityUp), ...styles.scopeText}}>Прицел</span>
       </div>
   );
 }
@@ -38,8 +38,8 @@ export const Radio = () => {
 
   return (
       <div style={styles.radio}>
-          <img width={224} height={191} style={Object.assign({}, styles.scope1, { opacity: isDragging ? 0 : 1})} src={radio} ref={drag} alt=""/>
-          <span style={{...styles.text, ...(isDragging ? styles.opacityDown : styles.opacityUp)}}>Радиостанция "Малютка"</span>
+          <img width={224} height={191} style={Object.assign({}, styles.scope1, { opacity: isDragging ? 0 : 1}, {marginLeft: 9})} src={radio} ref={drag} alt=""/>
+          <span style={{...styles.text, ...(isDragging ? styles.opacityDown : styles.opacityUp), ...styles.radioText}}>Радиостанция "Малютка"</span>
       </div>
   );
 }
@@ -55,7 +55,7 @@ export const Bomb = () => {
   return (
       <div style={styles.bomb}>
           <img width={214} height={210} style={Object.assign({}, styles.scope1, { opacity: isDragging ? 0 : 1})} src={bomb} ref={drag} alt=""/>
-          <span style={{...styles.text, ...(isDragging ? styles.opacityDown : styles.opacityUp)}}>Взрыватель для авиабомб</span>
+          <span style={{...styles.text, ...(isDragging ? styles.opacityDown : styles.opacityUp), ...styles.bombText}}>Взрыватель для авиабомб</span>
       </div>
   );
 }
@@ -145,22 +145,30 @@ const styles = {
     position: "absolute",
     display: "flex",
     flexDirection: "column",
-    right: 752,
-    bottom: 885
+    right: 735,
+    top: 785
   },
   radio: {
     position: "absolute",
     display: "flex",
     flexDirection: "column",
     right: 428,
-    bottom: 861
+    top: 785
   },
   bomb: {
     position: "absolute",
     display: "flex",
     flexDirection: "column",
-    right: 110,
-    bottom: 861
+    right: 107,
+    top: 775
+  },
+  bombText: {
+    marginTop: 25
+  },
+  radioText: {
+    left: 16,
+    position: "absolute",
+    top: 191
   },
   text: {
     marginTop: 35,

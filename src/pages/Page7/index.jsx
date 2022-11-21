@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import img from "./bg.jpg";
 import coal from "./resourses/coal.png";
 import iron from "./resourses/iron.png";
@@ -14,16 +14,20 @@ export function Page7() {
   const [limeHandler, setLimeHandl] = useState(styles.hide);
   const [zincHandler, setZincHandl] = useState(styles.hide);
   const [videoHandler, setVideoHandler] = useState(false);
-  setTimeout(() => setVideoHandler(true), 5700);
-  setTimeout(() => setVideoHandler(false), 12700);
+  const [opacity, setOpacity] = useState(styles.opacityUp);
+  useEffect(() => {
+    setTimeout(() => setVideoHandler(true), 5700);
+    setTimeout(() => setOpacity(styles.opacityDown), 12400);
+    setTimeout(() => setVideoHandler(false), 12700);
+  }, []);
   return (
     <div className="page">
         {videoHandler ? <video
           src={video}
-          style={styles.video}
+          style={{...styles.video, ...opacity}}
           autoPlay
         /> : null}
-        {/* <div onClick={() => setIronHandl(styles.show)} style={styles.iron}>
+        <div onClick={() => setIronHandl(styles.show)} style={styles.iron}>
             <img width={356} style={styles.image} src={iron} alt=""/>
             <div style={ironHandler}>
                 <img src={error} alt="" />
@@ -50,19 +54,28 @@ export function Page7() {
                 <img src={error} alt="" />
                 <span style={styles.text}>Известняк</span>
             </div>
-        </div> */}
+        </div>
         <img src={img} style={{width: "2160px", height: "1920px"}} alt=""/>  
     </div>
   )
 };
 
 const styles = {
+    opacityDown: {
+        opacity: 0,
+        transition: "opacity 0.6s"
+    },
+    opacityUp: {
+        opacity: 1,
+        transition: "opacity 1s"
+    },
     video: {
         position: "absolute",
         width: 2160,
         height: 1920,
         top: 0,
-        left: 0
+        left: 0,
+        zIndex: 90
     },
     hide: {
         display: "flex",
@@ -79,28 +92,28 @@ const styles = {
     iron: {
         position: "absolute",
         top: 408,
-        left: 1220,
+        left: 1190,
         display: "flex",
         flexDirection: "column"
     },
     coal: {
         position: "absolute",
         top: 408,
-        left: 1668,
+        left: 1619,
         display: "flex",
         flexDirection: "column"
     },
     zinc: {
         position: "absolute",
         top: 800,
-        left: 1220,
+        left: 1209,
         display: "flex",
         flexDirection: "column"
     },
     lime: {
         position: "absolute",
         top: 800,
-        left: 1664,
+        left: 1640,
         display: "flex",
         flexDirection: "column"
     },

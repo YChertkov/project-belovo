@@ -13,6 +13,8 @@ export const Page10 = () => {
   const contextRef = useRef(null);
   const [color, setColor] = useState("#070707");
   const [isDrawing, setIsDrawing] = useState(false);
+  const [opacity, setOpacity] = useState(false);
+  const [opacityCanvas, setOpacityCanvas] = useState(true);
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -43,21 +45,35 @@ export const Page10 = () => {
   const clearCanvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    context.fillStyle = "#ffe000";
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.globalCompositeOperation = 'destination-out';
+    context.lineWidth = 20;
   };
   const saveCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    setOpacityCanvas(false);
     const dataURL = canvasRef.current.toDataURL("image/png", 1.0);
     const a = document.createElement('a');
     a.href = dataURL;
     a.download = `${(Math.random() + 1).toString(36).substring(7)}.png`;
     document.body.appendChild(a);
     a.click();
+    setTimeout(() => context.clearRect(0, 0, canvas.width, canvas.height), 410);
+    setTimeout(() => setOpacity(true), 610);
+    setTimeout(() => setOpacityCanvas(true), 3310);
+    setTimeout(() => setOpacity(false), 3510);
+  };
+  const changeColor = (color) => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    setColor(color);
+    context.lineWidth = 5;
+    context.globalCompositeOperation = 'source-over';
   };
   return (
     <div style={{position: "absolute", top: 0}}>
       <canvas
-      style={styles.canvas}
+      style={{...styles.canvas, ...(opacityCanvas ? {opacity: 1} : {opacity: 0})}}
       width={943}
       height={700}
       onTouchStart={startDrawing}
@@ -65,13 +81,14 @@ export const Page10 = () => {
       onTouchMove={draw}
       ref={canvasRef}
       />
+      <span style={{...styles.text, ...(opacity ? {opacity: 1} : {opacity: 0})}}>Открытка отправлена</span>
       <img onClick={() => saveCanvas()} src={save} style={styles.save} alt="" />
-      <img onClick={() => setColor("rgba(0,0,0,0)")} src={eraser} style={styles.eraser} alt="" />
-      <img onClick={() => setColor("#ff0000")} src={red} style={styles.red} alt="" />
-      <img onClick={() => setColor("#005be4")} src={blue} style={styles.blue} alt="" />
-      <img onClick={() => setColor("#070707")} src={black} style={styles.black} alt="" />
-      <img onClick={() => setColor("#ffe000")} src={yellow} style={styles.yellow} alt="" />
-      <img onClick={() => setColor("#789932")} src={green} style={styles.green} alt="" />
+      <img onClick={() => clearCanvas()} src={eraser} style={styles.eraser} alt="" />
+      <img onClick={() => changeColor("#ff0000")} src={red} style={styles.red} alt="" />
+      <img onClick={() => changeColor("#005be4")} src={blue} style={styles.blue} alt="" />
+      <img onClick={() => changeColor("#070707")} src={black} style={styles.black} alt="" />
+      <img onClick={() => changeColor("#ffe000")} src={yellow} style={styles.yellow} alt="" />
+      <img onClick={() => changeColor("#789932")} src={green} style={styles.green} alt="" />
       <img src={img} style={styles.img} alt=""/> 
     </div>
   )};
@@ -86,6 +103,19 @@ const styles = {
     MozUserSelect: "none",
     WebkitUserSelect: "none",
     msUserSelect: "none"
+  },
+  text: {
+    position: "absolute",
+    top: 695,
+    right: 255,
+    fontFamily: "B52",
+    fontSize: 52,
+    lineHeight: "88.8%",
+    opacity: 0,
+    transition: "opacity 0.6s"
+  },
+  opacity: {
+    opacity: 1
   },
   canvas: {
     position: "absolute",
